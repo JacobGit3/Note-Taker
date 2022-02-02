@@ -1,0 +1,23 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "This is a Note Taker that is created using Express.js",
+  "main": "index.js",
+  "scripts": {
+    "start":"node Develop/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobGit3/Note-Taker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JacobGit3/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/JacobGit3/Note-Taker#readme",
+  "devDependencies": {
+    "express": "^4.17.2"
+  }
+}
