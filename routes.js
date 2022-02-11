@@ -1,16 +1,12 @@
-// Require router and path
+// Required Modules
 const router = require('express').Router();
 const path = require('path');
-
-// Notes json and functions
-const { createNewNote, validateNote } = require('../lib/notes.js');
-const notes = require('../db/db.json')
+const { createNewNote, validateNote } = require('./lib/notes.js');
+const notes = require('./db/db.json');
 
 // GET the saved notes from db folder
 router.get('/api/notes', (req, res) => {
-  let results = notes;
-  res.json(results);
-  console.info(notes);
+  res.json(notes);
 });
 
 // POST a new note to the notes json in db folder
@@ -24,20 +20,28 @@ router.post('/api/notes', (req, res) => {
   }
 });
 
+// Note Delete route
+router.delete('/api/notes/:id', (req, res) => {
+  const id = req.params.id;
+  notes.map((element, index) => {
+    if (element.id == id) {
+      notes.splice(index, 1);
+      return res.json(element);
+    }
+  });
+});
+
+// API ROUTES
 // get request to '/'
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // get request to '/notes'
 router.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/notes.html'));
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-// get request for any undefined paths
-router.get('*', (req, res) => {
-  console.info('invalid path')
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
+module.exports = router;
 
 module.exports = router;
